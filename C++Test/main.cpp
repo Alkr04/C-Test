@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     }*/
     mapBuilder.BuildMap(game, brick);
 
-    game.AddObject(new Player(game.GetRenderer(), 300, 300, 64, 64, Sprite));
+    game.AddObject(new Player(game.GetRenderer(), 300, 300, 50, 50, Sprite));
     
     while (game.IsRunning()) {
         

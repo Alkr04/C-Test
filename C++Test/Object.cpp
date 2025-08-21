@@ -47,21 +47,41 @@ bool Object::intersection(const SDL_FRect& other) const
 		other.x + other.w <= rect.x||
 		rect.y + rect.h <= other.y ||
 		other.y + other.h <= rect.y;
-	std::cout << noOverlap << " ";
+
+	if (rect.y + rect.h - 1 < other.y && other.y < rect.y + rect.h + 1)
+	{
+		std::cout << other.y << " " << rect.y + rect.h << " ";
+		return false;
+	}
 	return !noOverlap;
 }
 
-bool Object::intersectionX(const SDL_FRect & other) const 
+bool Object::intersectionY(const SDL_FRect & other) const 
 {
 	bool noOverlapX =
 		rect.x + rect.w <= other.x+1 ||
 		other.x + other.w <= rect.x+1;
 	bool noOverlapY =
-		rect.y + rect.h <= other.y+1 ||
-		other.y + other.h <= rect.y+1;
+		rect.y + rect.h <= other.y ||
+		other.y + other.h <= rect.y;
 	if (!noOverlapY && noOverlapX) 
 	{
-		std::cout << "noOverlap";
+		//std::cout << "noOverlap ";
+		return false;
+	}
+	return true;
+}
+bool Object::intersectionX(const SDL_FRect& other) const
+{
+	bool noOverlapX =
+		rect.x + rect.w <= other.x ||
+		other.x + other.w <= rect.x;
+	bool noOverlapY =
+		rect.y + rect.h <= other.y+2 ||
+		other.y + other.h <= rect.y+2;
+	if (noOverlapY && !noOverlapX)
+	{
+		//std::cout << "noOverlap ";
 		return false;
 	}
 	return true;

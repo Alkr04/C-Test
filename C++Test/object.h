@@ -14,6 +14,7 @@ public:
 	virtual void SetPosition(int, int);
 
 	bool intersection(const SDL_FRect& other)const;
+	bool intersectionY(const SDL_FRect& other)const;
 	bool intersectionX(const SDL_FRect& other)const;
 
 protected:

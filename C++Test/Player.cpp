@@ -7,7 +7,7 @@
 float moveX = 0;
 float moveY = 0;
 
-float speed = 1;
+float speed = 2;
 
 Extras extra;
 Game game;
@@ -27,7 +27,7 @@ void Player::Update(float DeltaTime, float ScaledDeltaTime)
 {
 
 	moveX = 0;
-	moveY = 0;
+	moveY = 1;
 
 
 
@@ -59,11 +59,22 @@ void Player::Update(float DeltaTime, float ScaledDeltaTime)
             {
                 if (obj != this) 
                 {
+                    bool y = false;
+                    bool x = false;
+                    if (obj->intersection(rect) && obj->intersectionY(rect))
+                    {
+                        y = true;
+                    }
                     if (obj->intersection(rect) && obj->intersectionX(rect))
                     {
+                        x = true;
+                    }
+                    if (y) 
+                    {
+
                         rect.y -= (moveY / magnetude) * speed;
                     }
-                    if (obj->intersection(rect))
+                    if (x) 
                     {
                         rect.x -= (moveX / magnetude) * speed;
 
